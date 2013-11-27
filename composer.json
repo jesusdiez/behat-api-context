@@ -5,7 +5,7 @@
     "type": "library",
     "require": {
         "php": ">=5.3.3",
-        "pablodip/felpado": "dev-master",
+        "pablodip/felpado": "~0.6",
         "behat/behat": "~2.4",
         "symfony/http-foundation": "~2.0"
     },
@@ -19,7 +19,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "0.6.x-dev"
         }
     }
 }

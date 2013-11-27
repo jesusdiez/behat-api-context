@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "52ca988617b67c9bc7f4d164d0ce22ea",
+    "hash": "051bb53ad32adaa91f55f810fb2e0587",
     "packages": [
         {
             "name": "behat/behat",
@@ -135,16 +135,16 @@
         },
         {
             "name": "pablodip/felpado",
-            "version": "dev-master",
+            "version": "v0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pablodip/felpado.git",
-                "reference": "f95b6a6aca35889d60ece8d0b3a40220f718d7a4"
+                "reference": "8b4828a9930c6b1fcba01751597df66e817bdb1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pablodip/felpado/zipball/f95b6a6aca35889d60ece8d0b3a40220f718d7a4",
-                "reference": "f95b6a6aca35889d60ece8d0b3a40220f718d7a4",
+                "url": "https://api.github.com/repos/pablodip/felpado/zipball/8b4828a9930c6b1fcba01751597df66e817bdb1c",
+                "reference": "8b4828a9930c6b1fcba01751597df66e817bdb1c",
                 "shasum": ""
             },
             "require": {
@@ -156,7 +156,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "0.6.x-dev"
                 }
             },
             "autoload": {
@@ -181,7 +181,7 @@
                 "functional",
                 "programming"
             ],
-            "time": "2013-11-27 16:37:43"
+            "time": "2013-11-27 20:48:16"
         },
         {
             "name": "symfony/config",
@@ -1114,9 +1114,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "pablodip/felpado": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": {
         "php": ">=5.3.3"
     },
