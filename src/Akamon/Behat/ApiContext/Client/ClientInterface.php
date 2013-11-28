@@ -1,6 +1,6 @@
 <?php
 
-namespace Akamon\Behat\Context\ApiContext;
+namespace Akamon\Behat\ApiContext\Client;
 
 use Symfony\Component\HttpFoundation as Http;
 

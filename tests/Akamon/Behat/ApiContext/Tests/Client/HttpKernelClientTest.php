@@ -1,8 +1,8 @@
 <?php
 
-namespace Akamon\Behat\Context\Tests\ApiContext;
+namespace Akamon\Behat\ApiContext\Tests\Client;
 
-use Akamon\Behat\Context\ApiContext\HttpKernelClient;
+use Akamon\Behat\ApiContext\Client\HttpKernelClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

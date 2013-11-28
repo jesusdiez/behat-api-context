@@ -1,9 +1,8 @@
 <?php
 
-namespace Akamon\Behat\Context\ApiContext;
+namespace Akamon\Behat\ApiContext\ParameterAccessor;
 
 use Felpado as f;
-use Symfony\Component\HttpFoundation\Response;
 
 class DeepArrayParameterAccessor implements ParameterAccessorInterface
 {

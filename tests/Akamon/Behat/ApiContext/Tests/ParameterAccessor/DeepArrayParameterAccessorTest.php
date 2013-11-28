@@ -1,8 +1,8 @@
 <?php
 
-namespace Akamon\Behat\Context\Tests\ApiContext;
+namespace Akamon\Behat\Tests\ApiContext\ParameterAccessor;
 
-use Akamon\Behat\Context\ApiContext\DeepArrayParameterAccessor;
+use Akamon\Behat\ApiContext\ParameterAccessor\DeepArrayParameterAccessor;
 
 class DeepArrayParameterAccessorTest extends \PHPUnit_Framework_TestCase
 {

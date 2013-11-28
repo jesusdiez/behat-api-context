@@ -1,12 +1,11 @@
 <?php
 
-namespace Akamon\Behat\Context;
+namespace Akamon\Behat\ApiContext;
 
-use Akamon\Behat\Context\ApiContext\RequestCreatorInterface;
-use Akamon\Behat\Context\ApiContext\ClientInterface;
-use Akamon\Behat\Context\ApiContext\ParameterAccessorInterface;
-use Akamon\Behat\Context\ApiContext\ResponseParametersProcessorInterface;
-use Akamon\Behat\Context\ApiContext\RequestFilterInterface;
+use Akamon\Behat\ApiContext\Client\ClientInterface;
+use Akamon\Behat\ApiContext\ParameterAccessor\ParameterAccessorInterface;
+use Akamon\Behat\ApiContext\ResponseParametersProcessor\ResponseParametersProcessorInterface;
+use Akamon\Behat\ApiContext\RequestFilter\RequestFilterInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Behat\Behat\Context\BehatContext;

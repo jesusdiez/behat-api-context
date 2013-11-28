@@ -1,8 +1,8 @@
 <?php
 
-namespace Akamon\Behat\Context\Tests\ApiContext;
+namespace Akamon\Behat\ApiContext\Tests\ResponseParametersProcessor;
 
-use Akamon\Behat\Context\ApiContext\JsonResponseParametersProcessor;
+use Akamon\Behat\ApiContext\ResponseParametersProcessor\JsonResponseParametersProcessor;
 use Symfony\Component\HttpFoundation\Response;
 
 class JsonResponseParametersProcessorTest extends \PHPUnit_Framework_TestCase

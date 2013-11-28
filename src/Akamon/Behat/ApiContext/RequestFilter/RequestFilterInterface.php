@@ -1,6 +1,6 @@
 <?php
 
-namespace Akamon\Behat\Context\ApiContext;
+namespace Akamon\Behat\ApiContext\RequestFilter;
 
 use Symfony\Component\HttpFoundation\RequestFilterInterface;
 
