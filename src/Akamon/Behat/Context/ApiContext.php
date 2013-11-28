@@ -151,7 +151,7 @@ class ApiContext extends BehatContext
 
         $value = $this->parameterAccessor->get($this->responseParameters, $name);
 
-        if ($value !== $expectedValue) {
+        if ($value != $expectedValue) {
             throw new \Exception(sprintf('The response header "%s" is "%s" and it should be "%s".', $name, $value, $expectedValue));
         }
     }
@@ -164,5 +164,13 @@ class ApiContext extends BehatContext
         foreach ($table->getRows() as $row) {
             $this->theResponseParameterShouldBe($row[0], $row[1]);
         }
+    }
+
+    /**
+     * @Then /^print last response$/
+     */
+    public function printLastResponse()
+    {
+        $this->printDebug($this->getResponse());
     }
 }

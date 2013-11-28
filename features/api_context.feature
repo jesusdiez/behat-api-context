@@ -51,3 +51,7 @@ Feature: ApiContext
         And I request "/users" using the method "POST"
         Then the response parameter "one.two" should exist
         And the response parameter "one.two" should be "foo"
+
+    Scenario: Print last response
+        When I request "/users" using the method "POST"
+        Then print last response
