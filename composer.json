@@ -1,7 +1,7 @@
 {
-    "name": "akamon/behat-contexts",
-    "description": "Akamon Behat Contexts",
-    "keywords": ["behat", "contexts"],
+    "name": "akamon/behat-api-context",
+    "description": "Behat ApiContext",
+    "keywords": ["behat", "context", "api"],
     "type": "library",
     "require": {
         "php": ">=5.3.3",
