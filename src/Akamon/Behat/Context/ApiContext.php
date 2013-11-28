@@ -6,6 +6,7 @@ use Akamon\Behat\Context\ApiContext\RequestCreatorInterface;
 use Akamon\Behat\Context\ApiContext\ClientInterface;
 use Akamon\Behat\Context\ApiContext\ParameterAccessorInterface;
 use Akamon\Behat\Context\ApiContext\ResponseParametersProcessorInterface;
+use Akamon\Behat\Context\ApiContext\RequestFilterInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Behat\Behat\Context\BehatContext;
@@ -17,6 +18,8 @@ class ApiContext extends BehatContext
     private $parameterAccessor;
     private $responseParametersProcessor;
 
+    private $requestFilter;
+
     private $requestHeaders = array();
     private $requestParameters = array();
     private $response;
@@ -27,6 +30,11 @@ class ApiContext extends BehatContext
         $this->client = $client;
         $this->parameterAccessor = $parameterAccessor;
         $this->responseParametersProcessor = $responseParametersProcessor;
+    }
+
+    public function setRequestFilter(RequestFilterInterface $requestFilter)
+    {
+        $this->requestFilter = $requestFilter;
     }
 
     /**
@@ -76,12 +84,21 @@ class ApiContext extends BehatContext
         $this->setResponse($response);
     }
 
-    protected function createRequest($uri, $method)
+    private function createRequest($uri, $method)
     {
         $request = Request::create($uri, $method);
 
         $request->headers->replace($this->requestHeaders);
         $request->request->replace($this->requestParameters);
+
+        return $this->filterRequest($request);
+    }
+
+    private function filterRequest(Request $request)
+    {
+        if ($this->requestFilter) {
+            return $this->requestFilter->filter($request);
+        }
 
         return $request;
     }
