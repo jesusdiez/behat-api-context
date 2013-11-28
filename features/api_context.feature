@@ -14,8 +14,8 @@ Feature: ApiContext
         | 500        |
 
     Scenario: Single Headers
-        When I add a request header "content-type" with "application/json"
-        And I add a request header "accept" with "text/xml"
+        When I add the request header "content-type" with "application/json"
+        And I add the request header "accept" with "text/xml"
         And I request "/users" using the method "POST"
         Then the response header "content-type" should be "application/json"
         Then the response header "accept" should be "text/xml"
@@ -30,8 +30,8 @@ Feature: ApiContext
             | accept       | text/xml         |
 
     Scenario: Single Parameters
-        When I add a request parameter "one" with "foo"
-        And I add a request parameter "two" with "bar"
+        When I add the request parameter "one" with "foo"
+        And I add the request parameter "two" with "bar"
         And I request "/users" using the method "POST"
         Then the response parameter "one" should exist
         And the response parameter "one" should be "foo"
@@ -47,7 +47,7 @@ Feature: ApiContext
             | two | bar |
 
     Scenario: Deep Parameters
-        When I add a request parameter "one.two" with "foo"
+        When I add the request parameter "one.two" with "foo"
         And I request "/users" using the method "POST"
         Then the response parameter "one.two" should exist
         And the response parameter "one.two" should be "foo"

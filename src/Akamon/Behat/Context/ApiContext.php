@@ -30,7 +30,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @When /^I add a request header "([^"]*)" with "([^"]*)"$/
+     * @When /^I add the request header "([^"]*)" with "([^"]*)"$/
      */
     public function addRequestHeader($name, $value)
     {
@@ -48,7 +48,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @When /^I add a request parameter "([^"]*)" with "([^"]*)"$/
+     * @When /^I add the request parameter "([^"]*)" with "([^"]*)"$/
      */
     public function addRequestParameter($name, $value)
     {
