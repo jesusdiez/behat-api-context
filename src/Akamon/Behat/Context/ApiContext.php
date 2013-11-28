@@ -191,7 +191,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @Given /^the response parameters should match:$/
+     * @Then /^the response parameters should match:$/
      */
     public function theResponseParametersShouldMatch(TableNode $table)
     {
