@@ -2,12 +2,12 @@
 
 namespace Akamon\Behat\Context\ApiContext;
 
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation as Http;
 
 interface ClientInterface
 {
     /**
-     * @return Response
+     * @return Http\Response
      */
-    function request(Request $request);
+    function request(Http\Request $request);
 }
