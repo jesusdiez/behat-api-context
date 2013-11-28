@@ -3,7 +3,7 @@
 <phpunit bootstrap="./tests/bootstrap.php" colors="true">
 
     <testsuites>
-        <testsuite name="Akamon Behat Contexts Test Suite">
+        <testsuite name="Akamon Behat ApiContext Test Suite">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
