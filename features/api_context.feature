@@ -32,19 +32,31 @@ Feature: ApiContext
     Scenario: Single Parameters
         When I add the request parameter "one" with "foo"
         And I add the request parameter "two" with "bar"
+        And I add the request parameter "three" with "10"
         And I request "/users" using the method "POST"
         Then the response parameter "one" should exist
         And the response parameter "one" should be "foo"
         And the response parameter "two" should be "bar"
+        And the response parameter "three" should match "/\d+/"
+        And the response parameter "three" should not match "/[a-z]+/"
 
     Scenario: Multiple Parameters:
         When I add the request parameters:
-            | one | foo |
-            | two | bar |
+            | one   | foo |
+            | two   | bar |
+            | three | 10  |
         And I request "/users" using the method "POST"
-        Then the response parameters should be:
-            | one | foo |
-            | two | bar |
+        Then the response parameters should exist:
+            | one   |
+            | two   |
+            | three |
+        And the response parameters should match:
+            | one   | /o/   |
+            | three | /\d+/ |
+        And the response parameters should be:
+            | one   | foo |
+            | two   | bar |
+            | three | 10  |
 
     Scenario: Deep Parameters
         When I add the request parameter "one.two" with "foo"

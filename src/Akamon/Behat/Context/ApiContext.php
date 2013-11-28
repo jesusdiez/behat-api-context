@@ -143,6 +143,16 @@ class ApiContext extends BehatContext
     }
 
     /**
+     * @Then /^the response parameters should exist:$/
+     */
+    public function theResponseParametersShouldExist(TableNode $table)
+    {
+        foreach ($table->getRows() as $row) {
+            $this->theResponseParameterShouldExist($row[0]);
+        }
+    }
+
+    /**
      * @Then /^the response parameter "([^"]*)" should be "([^"]*)"$/
      */
     public function theResponseParameterShouldBe($name, $expectedValue)
@@ -152,7 +162,7 @@ class ApiContext extends BehatContext
         $value = $this->parameterAccessor->get($this->responseParameters, $name);
 
         if ($value != $expectedValue) {
-            throw new \Exception(sprintf('The response header "%s" is "%s" and it should be "%s".', $name, $value, $expectedValue));
+            throw new \Exception(sprintf('The response parameter "%s" is "%s" and it should be "%s".', $name, $value, $expectedValue));
         }
     }
 
@@ -163,6 +173,44 @@ class ApiContext extends BehatContext
     {
         foreach ($table->getRows() as $row) {
             $this->theResponseParameterShouldBe($row[0], $row[1]);
+        }
+    }
+
+    /**
+     * @Then /^the response parameter "([^"]*)" should match "([^"]*)"$/
+     */
+    public function theResponseParameterShouldMatch($name, $regex)
+    {
+        $this->theResponseParameterShouldExist($name);
+
+        $value = $this->parameterAccessor->get($this->responseParameters, $name);
+
+        if (!preg_match($regex, $value)) {
+            throw new \Exception(sprintf('The response parameter "%s" is "%s" and it should match "%s" but it does not.', $name, $value, $regex));
+        }
+    }
+
+    /**
+     * @Given /^the response parameters should match:$/
+     */
+    public function theResponseParametersShouldMatch(TableNode $table)
+    {
+        foreach ($table->getRows() as $row) {
+            $this->theResponseParameterShouldMatch($row[0], $row[1]);
+        }
+    }
+
+    /**
+     * @Then /^the response parameter "([^"]*)" should not match "([^"]*)"$/
+     */
+    public function theResponseParameterShouldNotMatch($name, $regex)
+    {
+        $this->theResponseParameterShouldExist($name);
+
+        $value = $this->parameterAccessor->get($this->responseParameters, $name);
+
+        if (preg_match($regex, $value)) {
+            throw new \Exception(sprintf('The response parameter "%s" is "%s" and it should not match "%s" but it does.', $name, $value, $regex));
         }
     }
 
