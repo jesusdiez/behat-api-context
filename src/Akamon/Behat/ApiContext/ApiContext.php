@@ -73,17 +73,17 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @When /^I request "([^"]*)" using the method "([^"]*)"$/
+     * @When /^I send a "([^"]*)" request to "([^"]*)"$/
      */
-    public function request($uri, $method)
+    public function request($method, $uri)
     {
-        $request = $this->createRequest($uri, $method);
+        $request = $this->createRequest($method, $uri);
 
         $response = $this->client->request($request);
         $this->setResponse($response);
     }
 
-    private function createRequest($uri, $method)
+    private function createRequest($method, $uri)
     {
         $request = Request::create($uri, $method);
 
