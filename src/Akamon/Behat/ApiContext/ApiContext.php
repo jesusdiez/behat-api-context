@@ -9,6 +9,7 @@ use Akamon\Behat\ApiContext\RequestFilter\RequestFilterInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Behat\Behat\Context\BehatContext;
+use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
 use Felpado as f;
 
@@ -22,6 +23,8 @@ class ApiContext extends BehatContext
 
     private $requestHeaders = array();
     private $requestParameters = array();
+    private $requestContent;
+
     private $response;
     private $responseParameters;
 
@@ -84,6 +87,14 @@ class ApiContext extends BehatContext
     }
 
     /**
+     * @When /^I set the request content:$/
+     */
+    public function iSetTheRequestContent(PyStringNode $string)
+    {
+        $this->requestContent = $string->getRaw();
+    }
+
+    /**
      * @When /^I make a "([^"]*)" request to "([^"]*)"$/
      */
     public function request($method, $uri)
@@ -96,10 +107,19 @@ class ApiContext extends BehatContext
 
     private function createRequest($method, $uri)
     {
-        $request = Request::create($uri, $method);
+        $cookies = array();
+        $files = array();
+        $server = array();
+
+        $request = Request::create($uri, $method,
+            $this->requestParameters,
+            $cookies,
+            $files,
+            $server,
+            $this->requestContent
+        );
 
         $request->headers->replace($this->requestHeaders);
-        $request->request->replace($this->requestParameters);
 
         return $this->filterRequest($request);
     }

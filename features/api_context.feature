@@ -72,6 +72,16 @@ Feature: ApiContext
         Then the response parameter "one.two" should exist
         And the response parameter "one.two" should be "foo"
 
+    Scenario: Request content
+        When I set the request content:
+           """
+           {"one":"foo","two":"bar"}
+           """
+        And I make a "POST" request to "/users"
+        Then the response parameters should be:
+            | one   | foo |
+            | two   | bar |
+
     Scenario: Print last response
         When I make a "POST" request to "/users"
         Then print last response

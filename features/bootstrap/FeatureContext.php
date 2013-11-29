@@ -39,7 +39,11 @@ class TestingClient implements ClientInterface
 
         $response->setStatusCode($request->query->get('status_code', 200));
         $response->headers->replace($request->headers->all());
-        $response->setContent(json_encode($request->request->all()));
+        $response->setContent(
+            $request->request->count() ?
+            json_encode($request->request->all()) :
+            $request->getContent()
+        );
 
         return $response;
     }
