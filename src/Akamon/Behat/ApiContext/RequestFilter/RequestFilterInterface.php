@@ -2,12 +2,12 @@
 
 namespace Akamon\Behat\ApiContext\RequestFilter;
 
-use Symfony\Component\HttpFoundation\RequestFilterInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 interface RequestFilterInterface
 {
     /**
      * @return Request
      */
-    function request(Request $request);
+    function filter(Request $request);
 }

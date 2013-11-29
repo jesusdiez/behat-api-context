@@ -1,6 +1,6 @@
 <?php
 
-namespace Akamon\Behat\Tests\ApiContext\ParameterAccessor;
+namespace Akamon\Behat\ApiContext\Tests\ParameterAccessor;
 
 use Akamon\Behat\ApiContext\ParameterAccessor\DeepArrayParameterAccessor;
 
