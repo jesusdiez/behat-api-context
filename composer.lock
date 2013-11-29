@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "ccd21568b238caaddb01770c181b3921",
+    "hash": "4a0beceae5c4c1d87e66b9e4659d65ce",
     "packages": [
         {
             "name": "behat/behat",
@@ -135,16 +135,16 @@
         },
         {
             "name": "pablodip/felpado",
-            "version": "v0.6.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pablodip/felpado.git",
-                "reference": "8b4828a9930c6b1fcba01751597df66e817bdb1c"
+                "reference": "aa751a05254e782c1b65baee92235ac5f31b4a30"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pablodip/felpado/zipball/8b4828a9930c6b1fcba01751597df66e817bdb1c",
-                "reference": "8b4828a9930c6b1fcba01751597df66e817bdb1c",
+                "url": "https://api.github.com/repos/pablodip/felpado/zipball/aa751a05254e782c1b65baee92235ac5f31b4a30",
+                "reference": "aa751a05254e782c1b65baee92235ac5f31b4a30",
                 "shasum": ""
             },
             "require": {
@@ -181,7 +181,7 @@
                 "functional",
                 "programming"
             ],
-            "time": "2013-11-27 20:48:16"
+            "time": "2013-11-29 12:08:09"
         },
         {
             "name": "symfony/config",
@@ -1279,9 +1279,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "pablodip/felpado": 20
+    },
     "platform": {
         "php": ">=5.3.3"
     },

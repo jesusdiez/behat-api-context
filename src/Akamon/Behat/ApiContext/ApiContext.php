@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\TableNode;
+use Felpado as f;
 
 class ApiContext extends BehatContext
 {
@@ -67,13 +68,23 @@ class ApiContext extends BehatContext
      */
     public function addRequestParameters(TableNode $table)
     {
-        foreach ($table->getRows() as $row) {
-            $this->addRequestParameter($row[0], $row[1]);
+        foreach ($this->parametersFromTable($table) as $name => $value) {
+            $this->addRequestParameter($name, $value);
         }
     }
 
+    private function parametersFromTable(TableNode $table)
+    {
+        return f::renameKeys(
+            f::map(function ($v) {
+                return f::first(f::rest($v));
+            }, $table->getRows()),
+            f::map(array('f', 'first'), $table->getRows())
+        );
+    }
+
     /**
-     * @When /^I send a "([^"]*)" request to "([^"]*)"$/
+     * @When /^I make a "([^"]*)" request to "([^"]*)"$/
      */
     public function request($method, $uri)
     {
@@ -112,6 +123,15 @@ class ApiContext extends BehatContext
     private function getResponse()
     {
         return $this->response;
+    }
+
+    /**
+     * @When /^I make a "([^"]*)" request to "([^"]*)" with the parameters:$/
+     */
+    public function requestWith($method, $uri, TableNode $table)
+    {
+        $this->addRequestParameters($table);
+        $this->request($method, $uri);
     }
 
     /**
