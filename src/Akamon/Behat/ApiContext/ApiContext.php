@@ -109,7 +109,7 @@ class ApiContext extends BehatContext
     {
         $cookies = array();
         $files = array();
-        $server = array();
+        $server = $this->getHttpHeaders();
 
         $request = Request::create($uri, $method,
             $this->requestParameters,
@@ -119,9 +119,17 @@ class ApiContext extends BehatContext
             $this->requestContent
         );
 
-        $request->headers->replace($this->requestHeaders);
-
         return $this->filterRequest($request);
+    }
+
+    private function getHttpHeaders()
+    {
+        $keys = f::keys($this->requestHeaders);
+        $keysMap = array_combine($keys, f::map(function ($key) {
+            return 'HTTP_'.$key;
+        }, $keys));
+
+        return f::renameKeys($this->requestHeaders, $keysMap);
     }
 
     private function filterRequest(Request $request)

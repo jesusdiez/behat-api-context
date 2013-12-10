@@ -14,20 +14,20 @@ Feature: ApiContext
         | 500        |
 
     Scenario: Single Headers
-        When I add the request header "content-type" with "application/json"
+        When I add the request header "accept-language" with "es"
         And I add the request header "accept" with "text/xml"
         And I make a "POST" request to "/users"
-        Then the response header "content-type" should be "application/json"
+        Then the response header "accept-language" should be "es"
         Then the response header "accept" should be "text/xml"
 
     Scenario: Multiple Headers
         When I add the request headers:
-            | content-type | application/json |
-            | accept       | text/xml         |
+            | accept-language | es       |
+            | accept          | text/xml |
         And I make a "POST" request to "/users"
         Then the request headers should be:
-            | content-type | application/json |
-            | accept       | text/xml         |
+            | accept-language | es       |
+            | accept          | text/xml |
 
     Scenario: Single Parameters
         When I add the request parameter "one" with "foo"
