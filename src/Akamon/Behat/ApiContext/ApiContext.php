@@ -150,6 +150,10 @@ class ApiContext extends BehatContext
 
     private function getResponse()
     {
+        if ($this->response === null) {
+            throw new \RuntimeException('There is no response.');
+        }
+
         return $this->response;
     }
 
