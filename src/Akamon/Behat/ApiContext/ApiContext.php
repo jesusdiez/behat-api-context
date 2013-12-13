@@ -41,7 +41,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @When /^I add the request header "([^"]*)" with "([^"]*)"$/
+     * @When /^I add the request header "(.*)" with "(.*)"$/
      */
     public function addRequestHeader($name, $value)
     {
@@ -59,7 +59,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @When /^I add the http basic authentication with "([^"]*)" and "([^"]*)"$/
+     * @When /^I add the http basic authentication with "(.*)" and "(.*)"$/
      */
     public function addHttpBasicAuthentication($username, $password)
     {
@@ -67,7 +67,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @When /^I add the request parameter "([^"]*)" with "([^"]*)"$/
+     * @When /^I add the request parameter "(.*)" with "(.*)"$/
      */
     public function addRequestParameter($name, $value)
     {
@@ -103,7 +103,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @When /^I make a "([^"]*)" request to "([^"]*)"$/
+     * @When /^I make a "(.*)" request to "(.*)"$/
      */
     public function request($method, $uri)
     {
@@ -166,7 +166,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @When /^I make a "([^"]*)" request to "([^"]*)" with the parameters:$/
+     * @When /^I make a "(.*)" request to "(.*)" with the parameters:$/
      */
     public function requestWith($method, $uri, TableNode $table)
     {
@@ -175,7 +175,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @Then /^the response status code should be "([^"]*)"$/
+     * @Then /^the response status code should be "(.*)"$/
      */
     public function checkResponseStatusCode($expectedStatusCode)
     {
@@ -187,7 +187,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @Then /^the response header "([^"]*)" should be "([^"]*)"$/
+     * @Then /^the response header "(.*)" should be "(.*)"$/
      */
     public function checkResponseHeader($name, $expectedValue)
     {
@@ -209,7 +209,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @Then /^the response parameter "([^"]*)" should exist$/
+     * @Then /^the response parameter "(.*)" should exist$/
      */
     public function checkResponseParameterExists($name)
     {
@@ -229,7 +229,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @Then /^the response parameter "([^"]*)" should be "([^"]*)"$/
+     * @Then /^the response parameter "(.*)" should be "(.*)"$/
      */
     public function checkResponseParameter($name, $expectedValue)
     {
@@ -253,7 +253,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @Then /^the response parameter "([^"]*)" should match "([^"]*)"$/
+     * @Then /^the response parameter "(.*)" should match "(.*)"$/
      */
     public function checkResponseParameterMatchs($name, $regex)
     {
@@ -277,7 +277,7 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @Then /^the response parameter "([^"]*)" should not match "([^"]*)"$/
+     * @Then /^the response parameter "(.*)" should not match "(.*)"$/
      */
     public function checkResponseParameterNotMatchs($name, $regex)
     {
