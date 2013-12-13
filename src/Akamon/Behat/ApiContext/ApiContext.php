@@ -97,7 +97,7 @@ class ApiContext extends BehatContext
     /**
      * @When /^I set the request content:$/
      */
-    public function iSetTheRequestContent(PyStringNode $string)
+    public function setRequestContent(PyStringNode $string)
     {
         $this->requestContent = $string->getRaw();
     }
@@ -177,7 +177,7 @@ class ApiContext extends BehatContext
     /**
      * @Then /^the response status code should be "([^"]*)"$/
      */
-    public function theResponseStatusCodeShouldBe($expectedStatusCode)
+    public function checkResponseStatusCode($expectedStatusCode)
     {
         $statusCode = $this->getResponse()->getStatusCode();
 
@@ -189,7 +189,7 @@ class ApiContext extends BehatContext
     /**
      * @Then /^the response header "([^"]*)" should be "([^"]*)"$/
      */
-    public function theResponseHeaderShouldBe($name, $expectedValue)
+    public function checkResponseHeader($name, $expectedValue)
     {
         $value = $this->getResponse()->headers->get($name);
 
@@ -201,17 +201,17 @@ class ApiContext extends BehatContext
     /**
      * @Then /^the request headers should be:$/
      */
-    public function theRequestHeadersShouldBe(TableNode $table)
+    public function checkResponseHeaders(TableNode $table)
     {
         foreach ($table->getRows() as $row) {
-            $this->theResponseHeaderShouldBe($row[0], $row[1]);
+            $this->checkResponseHeader($row[0], $row[1]);
         }
     }
 
     /**
      * @Then /^the response parameter "([^"]*)" should exist$/
      */
-    public function theResponseParameterShouldExist($name)
+    public function checkResponseParameterExists($name)
     {
         if (!$this->parameterAccessor->has($this->responseParameters, $name)) {
             throw new \Exception(sprintf('The response parameter "%s" does not exist.', $name));
@@ -221,19 +221,19 @@ class ApiContext extends BehatContext
     /**
      * @Then /^the response parameters should exist:$/
      */
-    public function theResponseParametersShouldExist(TableNode $table)
+    public function checkResponseParametersExist(TableNode $table)
     {
         foreach ($table->getRows() as $row) {
-            $this->theResponseParameterShouldExist($row[0]);
+            $this->checkResponseParameterExists($row[0]);
         }
     }
 
     /**
      * @Then /^the response parameter "([^"]*)" should be "([^"]*)"$/
      */
-    public function theResponseParameterShouldBe($name, $expectedValue)
+    public function checkResponseParameter($name, $expectedValue)
     {
-        $this->theResponseParameterShouldExist($name);
+        $this->checkResponseParameterExists($name);
 
         $value = $this->parameterAccessor->get($this->responseParameters, $name);
 
@@ -245,19 +245,19 @@ class ApiContext extends BehatContext
     /**
      * @Then /^the response parameters should be:$/
      */
-    public function theResponseParametersShouldBe(TableNode $table)
+    public function checkResponseParameters(TableNode $table)
     {
         foreach ($table->getRows() as $row) {
-            $this->theResponseParameterShouldBe($row[0], $row[1]);
+            $this->checkResponseParameter($row[0], $row[1]);
         }
     }
 
     /**
      * @Then /^the response parameter "([^"]*)" should match "([^"]*)"$/
      */
-    public function theResponseParameterShouldMatch($name, $regex)
+    public function checkResponseParameterMatchs($name, $regex)
     {
-        $this->theResponseParameterShouldExist($name);
+        $this->checkResponseParameterExists($name);
 
         $value = $this->parameterAccessor->get($this->responseParameters, $name);
 
@@ -269,19 +269,19 @@ class ApiContext extends BehatContext
     /**
      * @Then /^the response parameters should match:$/
      */
-    public function theResponseParametersShouldMatch(TableNode $table)
+    public function checkResponseParametersMatch(TableNode $table)
     {
         foreach ($table->getRows() as $row) {
-            $this->theResponseParameterShouldMatch($row[0], $row[1]);
+            $this->checkResponseParameterMatchs($row[0], $row[1]);
         }
     }
 
     /**
      * @Then /^the response parameter "([^"]*)" should not match "([^"]*)"$/
      */
-    public function theResponseParameterShouldNotMatch($name, $regex)
+    public function checkResponseParameterNotMatchs($name, $regex)
     {
-        $this->theResponseParameterShouldExist($name);
+        $this->checkResponseParameterExists($name);
 
         $value = $this->parameterAccessor->get($this->responseParameters, $name);
 
