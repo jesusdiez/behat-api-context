@@ -59,6 +59,14 @@ class ApiContext extends BehatContext
     }
 
     /**
+     * @When /^I add the http basic authentication with "([^"]*)" and "([^"]*)"$/
+     */
+    public function addHttpBasicAuthentication($username, $password)
+    {
+        $this->addRequestHeader('AUTHORIZATION', 'Basic ' . base64_encode($username . ':' . $password));
+    }
+
+    /**
      * @When /^I add the request parameter "([^"]*)" with "([^"]*)"$/
      */
     public function addRequestParameter($name, $value)

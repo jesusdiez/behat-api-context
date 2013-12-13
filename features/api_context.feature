@@ -29,6 +29,11 @@ Feature: ApiContext
             | accept-language | es       |
             | accept          | text/xml |
 
+    Scenario: Basic Authentication
+        When I add the http basic authentication with "pablodip" and "pass"
+        And I make a "POST" request to "/users"
+        Then the response header "authorization" should be "Basic cGFibG9kaXA6cGFzcw=="
+
     Scenario: Single Parameters
         When I add the request parameter "one" with "foo"
         And I add the request parameter "two" with "bar"
