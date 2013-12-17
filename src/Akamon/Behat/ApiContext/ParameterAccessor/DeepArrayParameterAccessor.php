@@ -2,7 +2,7 @@
 
 namespace Akamon\Behat\ApiContext\ParameterAccessor;
 
-use Felpado as f;
+use felpado as f;
 
 class DeepArrayParameterAccessor implements ParameterAccessorInterface
 {
@@ -15,12 +15,12 @@ class DeepArrayParameterAccessor implements ParameterAccessorInterface
 
     public function add($parameters, $name, $value)
     {
-        return f::assocIn($parameters, $this->depthForName($name), $value);
+        return f\assoc_in($parameters, $this->depthForName($name), $value);
     }
 
     public function has($parameters, $name)
     {
-        return f::containsIn($parameters, $this->depthForName($name));
+        return f\contains_in($parameters, $this->depthForName($name));
     }
 
     public function get($parameters, $name)
@@ -29,7 +29,7 @@ class DeepArrayParameterAccessor implements ParameterAccessorInterface
             throw new \InvalidArgumentException(sprintf('The parameter "%s" does not exist.', $name));
         }
 
-        return f::getIn($parameters, $this->depthForName($name));
+        return f\get_in($parameters, $this->depthForName($name));
     }
 
     private function depthForName($name)

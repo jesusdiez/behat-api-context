@@ -2,7 +2,7 @@
 
 namespace Akamon\Behat\ApiContext\ParameterAccessor\NameReplacer;
 
-use Felpado as f;
+use felpado as f;
 
 class RegexNameReplacer implements NameReplacerInterface
 {
@@ -24,12 +24,12 @@ class RegexNameReplacer implements NameReplacerInterface
             throw new \InvalidArgumentException(sprintf('The name "%s" does not have to replace.', $name));
         }
 
-        return f::first($this->matchesForName($name));
+        return f\first($this->matchesForName($name));
     }
 
     private function matchesForName($name)
     {
-        $matches = f::rest($this->matchesForRegex($name));
+        $matches = f\rest($this->matchesForRegex($name));
 
         if (count($matches)) {
             return $matches;

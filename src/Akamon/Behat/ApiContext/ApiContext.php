@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
-use Felpado as f;
+use felpado as f;
 
 class ApiContext extends BehatContext
 {
@@ -86,11 +86,11 @@ class ApiContext extends BehatContext
 
     private function parametersFromTable(TableNode $table)
     {
-        return f::renameKeys(
-            f::map(function ($v) {
-                return f::first(f::rest($v));
+        return f\rename_keys(
+            f\map(function ($v) {
+                return f\first(f\rest($v));
             }, $table->getRows()),
-            f::map(array('f', 'first'), $table->getRows())
+            f\map('felpado\first', $table->getRows())
         );
     }
 
@@ -132,12 +132,12 @@ class ApiContext extends BehatContext
 
     private function getHttpHeaders()
     {
-        $keys = f::keys($this->requestHeaders);
-        $keysMap = array_combine($keys, f::map(function ($key) {
+        $keys = f\keys($this->requestHeaders);
+        $keysMap = array_combine($keys, f\map(function ($key) {
             return 'HTTP_'.$key;
         }, $keys));
 
-        return f::renameKeys($this->requestHeaders, $keysMap);
+        return f\rename_keys($this->requestHeaders, $keysMap);
     }
 
     private function filterRequest(Request $request)
@@ -145,7 +145,6 @@ class ApiContext extends BehatContext
         if ($this->requestFilter) {
             return $this->requestFilter->filter($request);
         }
-
         return $request;
     }
 
