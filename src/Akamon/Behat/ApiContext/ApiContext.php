@@ -298,7 +298,7 @@ class ApiContext extends BehatContext
     public function theResponseContentShouldBe(PyStringNode $string)
     {
         if ($string->getRaw() !== $this->getResponse()->getContent()) {
-            throw new \Exception(sprintf('The response content is "%s" and it should be "%s"', $this->getResponse()->getContent(), $string->getRaw));
+            throw new \Exception(sprintf('The response content is "%s" and it should be "%s"', $this->getResponse()->getContent(), $string->getRaw()));
         }
     }
 
