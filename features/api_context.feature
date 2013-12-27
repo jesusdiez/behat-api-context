@@ -77,15 +77,18 @@ Feature: ApiContext
         Then the response parameter "one.two" should exist
         And the response parameter "one.two" should be "foo"
 
-    Scenario: Request content
+    Scenario: Content
         When I set the request content:
            """
            {"one":"foo","two":"bar"}
            """
         And I make a "POST" request to "/users"
-        Then the response parameters should be:
-            | one   | foo |
-            | two   | bar |
+        Then the response content should be:
+            """
+            {"one":"foo","two":"bar"}
+            """
+        And the response content should match "/foo/"
+        And the response content should not match "/ups/"
 
     Scenario: Print last response
         When I make a "POST" request to "/users"

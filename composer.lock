@@ -134,12 +134,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pablodip/felpado.git",
-                "reference": "9b8cd9e9b65a40189eb4619cbb92ec5c35057c1f"
+                "reference": "0f7720b77f6546210f4b4b8cfcc8b996c1550f78"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pablodip/felpado/zipball/9b8cd9e9b65a40189eb4619cbb92ec5c35057c1f",
-                "reference": "9b8cd9e9b65a40189eb4619cbb92ec5c35057c1f",
+                "url": "https://api.github.com/repos/pablodip/felpado/zipball/0f7720b77f6546210f4b4b8cfcc8b996c1550f78",
+                "reference": "0f7720b77f6546210f4b4b8cfcc8b996c1550f78",
                 "shasum": ""
             },
             "require": {
@@ -171,7 +171,7 @@
                 "functional",
                 "programming"
             ],
-            "time": "2013-12-16 23:22:46"
+            "time": "2013-12-26 23:21:29"
         },
         {
             "name": "symfony/config",

@@ -155,6 +155,9 @@ class ApiContext extends BehatContext
         $this->responseParameters = $this->responseParametersProcessor->process($response);
     }
 
+    /**
+     * @return Response
+     */
     private function getResponse()
     {
         if ($this->response === null) {
@@ -286,6 +289,40 @@ class ApiContext extends BehatContext
 
         if (preg_match($regex, $value)) {
             throw new \Exception(sprintf('The response parameter "%s" is "%s" and it should not match "%s" but it does.', $name, $value, $regex));
+        }
+    }
+
+    /**
+     * @Then /^the response content should be:$/
+     */
+    public function theResponseContentShouldBe(PyStringNode $string)
+    {
+        if ($string->getRaw() !== $this->getResponse()->getContent()) {
+            throw new \Exception(sprintf('The response content is "%s" and it should be "%s"', $this->getResponse()->getContent(), $string->getRaw));
+        }
+    }
+
+    /**
+     * @Then /^the response content should match "([^"]*)"$/
+     */
+    public function theResponseContentShouldNotMatch($regex)
+    {
+        $content = $this->getResponse()->getContent();
+
+        if (f\not(preg_match($regex, $content))) {
+            throw new \Exception(sprintf('The response content is "%s" and it should match "%s", but it does not.', $regex, $content));
+        }
+    }
+
+    /**
+     * @Then /^the response content should not match "([^"]*)"$/
+     */
+    public function theResponseContentShouldMatch($regex)
+    {
+        $content = $this->getResponse()->getContent();
+
+        if (preg_match($regex, $content)) {
+            throw new \Exception(sprintf('The response content is "%s" and it should not match "%s", but it does.', $regex, $content));
         }
     }
 
