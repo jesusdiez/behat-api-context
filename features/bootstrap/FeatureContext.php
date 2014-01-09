@@ -7,10 +7,10 @@ use Behat\Behat\Context\ClosuredContextInterface,
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
-use Akamon\Behat\ApiContext\ApiContext;
-use Akamon\Behat\ApiContext\Client\ClientInterface;
-use Akamon\Behat\ApiContext\ParameterAccessor\DeepArrayParameterAccessor;
-use Akamon\Behat\ApiContext\ResponseParametersProcessor\JsonResponseParametersProcessor;
+use Akamon\Behat\ApiContext\Domain\ApiContext;
+use Akamon\Behat\ApiContext\Domain\Client\ClientInterface;
+use Akamon\Behat\ApiContext\Domain\ParameterAccessor\DeepArrayParameterAccessor;
+use Akamon\Behat\ApiContext\Domain\ResponseParametersProcessor\JsonResponseParametersProcessor;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 

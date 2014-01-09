@@ -4,15 +4,15 @@
 
     <testsuites>
         <testsuite name="Akamon Behat ApiContext Test Suite">
-            <directory suffix="Test.php">./src/Akamon/Behat/ApiContext/Tests</directory>
+            <directory suffix="Test.php">./src/Akamon/Behat/ApiContext/*/Tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./src/Akamon/Behat/ApiContext</directory>
+            <directory>./src/Akamon/Behat/ApiContext/*/Tests</directory>
             <exclude>
-                <directory>./src/Akamon/Behat/ApiContext/Tests</directory>
+                <directory>./src/Akamon/Behat/ApiContext/*/Tests</directory>
             </exclude>
         </whitelist>
     </filter>
