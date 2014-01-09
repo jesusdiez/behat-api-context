@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="./tests/bootstrap.php" colors="true">
+<phpunit bootstrap="./vendor/autoload.php" colors="true">
 
     <testsuites>
         <testsuite name="Akamon Behat ApiContext Test Suite">
-            <directory suffix="Test.php">./tests</directory>
+            <directory suffix="Test.php">./src/Akamon/Behat/ApiContext/Tests</directory>
         </testsuite>
     </testsuites>
 
     <filter>
         <whitelist>
-            <directory>./src</directory>
+            <directory>./src/Akamon/Behat/ApiContext</directory>
+            <exclude>
+                <directory>./src/Akamon/Behat/ApiContext/Tests</directory>
+            </exclude>
         </whitelist>
     </filter>
 
