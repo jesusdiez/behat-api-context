@@ -5,7 +5,7 @@
     "type": "library",
     "require": {
         "php": ">=5.3.3",
-        "pablodip/felpado": "*@dev",
+        "pablodip/felpado": "~0.8",
         "behat/behat": "~2.4",
         "symfony/http-foundation": "~2.0"
     },
