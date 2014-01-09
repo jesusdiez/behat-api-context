@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9a7b6f499d2137dd7f0b47a915422e0b",
+    "hash": "6271fa2fec2037dfeb7ff711f92d779e",
     "packages": [
         {
             "name": "behat/behat",
@@ -478,56 +478,6 @@
             "description": "Symfony Finder Component",
             "homepage": "http://symfony.com",
             "time": "2014-01-01 08:14:50"
-        },
-        {
-            "name": "symfony/http-foundation",
-            "version": "v2.4.1",
-            "target-dir": "Symfony/Component/HttpFoundation",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/HttpFoundation.git",
-                "reference": "6c6b8a7bcd7e2cc920cd6acace563fdbf121d844"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/6c6b8a7bcd7e2cc920cd6acace563fdbf121d844",
-                "reference": "6c6b8a7bcd7e2cc920cd6acace563fdbf121d844",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\HttpFoundation\\": ""
-                },
-                "classmap": [
-                    "Symfony/Component/HttpFoundation/Resources/stubs"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony HttpFoundation Component",
-            "homepage": "http://symfony.com",
-            "time": "2014-01-05 02:10:50"
         },
         {
             "name": "symfony/translation",
@@ -1145,6 +1095,56 @@
             "description": "Symfony Debug Component",
             "homepage": "http://symfony.com",
             "time": "2014-01-01 09:02:49"
+        },
+        {
+            "name": "symfony/http-foundation",
+            "version": "v2.4.1",
+            "target-dir": "Symfony/Component/HttpFoundation",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/HttpFoundation.git",
+                "reference": "6c6b8a7bcd7e2cc920cd6acace563fdbf121d844"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/6c6b8a7bcd7e2cc920cd6acace563fdbf121d844",
+                "reference": "6c6b8a7bcd7e2cc920cd6acace563fdbf121d844",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\HttpFoundation\\": ""
+                },
+                "classmap": [
+                    "Symfony/Component/HttpFoundation/Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony HttpFoundation Component",
+            "homepage": "http://symfony.com",
+            "time": "2014-01-05 02:10:50"
         },
         {
             "name": "symfony/http-kernel",
