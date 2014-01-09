@@ -26,7 +26,7 @@ class FeatureContext extends BehatContext
     {
         return new ApiContext(
             new TestingClient(),
-            new DeepArrayParameterAccessor('.'),
+            new DeepArrayParameterAccessor(array('separator' => '.')),
             new JsonResponseParametersProcessor()
         );
     }

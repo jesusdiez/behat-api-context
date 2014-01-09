@@ -20,7 +20,7 @@ class DeepArrayParameterAccessorTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->accessor = new DeepArrayParameterAccessor('.');
+        $this->accessor = new DeepArrayParameterAccessor(array('separator' => '.'));
     }
 
     public function testAddShouldAddAParameter()

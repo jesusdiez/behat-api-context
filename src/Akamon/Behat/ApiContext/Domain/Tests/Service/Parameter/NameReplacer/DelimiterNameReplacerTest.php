@@ -8,7 +8,7 @@ class DelimiterNameReplacerTest extends RegexNameReplacerTestCase
 {
     protected function createRegexNameReplacer()
     {
-        return new DelimiterNameReplacer('#');
+        return new DelimiterNameReplacer(array('delimiter' => '#'));
     }
 
     protected function namesHasToReplace()

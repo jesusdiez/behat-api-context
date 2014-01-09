@@ -6,11 +6,13 @@ use felpado as f;
 
 class DeepArrayParameterAccessor implements ParameterAccessorInterface
 {
-    private $depthSeparator;
+    private $params;
 
-    public function __construct($depthSeparator)
+    public function __construct(array $params)
     {
-        $this->depthSeparator = $depthSeparator;
+        $this->params = f\fill_validating_or_throw($params, array(
+            'separator' => f\required(array('v' => 'is_string'))
+        ));
     }
 
     public function add($parameters, $name, $value)
@@ -34,6 +36,6 @@ class DeepArrayParameterAccessor implements ParameterAccessorInterface
 
     private function depthForName($name)
     {
-        return explode($this->depthSeparator, $name);
+        return explode(f\get($this->params, 'separator'), $name);
     }
 }

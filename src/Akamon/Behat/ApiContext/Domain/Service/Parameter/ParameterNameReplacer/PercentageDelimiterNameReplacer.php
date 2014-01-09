@@ -6,6 +6,6 @@ class PercentageDelimiterNameReplacer extends DelimiterNameReplacer
 {
     public function __construct()
     {
-        parent::__construct('%');
+        parent::__construct(array('delimiter' => '%'));
     }
 }

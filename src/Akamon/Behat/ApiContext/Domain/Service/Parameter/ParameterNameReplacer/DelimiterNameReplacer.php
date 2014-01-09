@@ -2,10 +2,14 @@
 
 namespace Akamon\Behat\ApiContext\Domain\Service\Parameter\ParameterNameReplacer;
 
+use felpado as f;
+
 class DelimiterNameReplacer extends RegexNameReplacer
 {
-    public function __construct($delimiter)
+    public function __construct(array $params)
     {
+        $delimiter = f\get($params, 'delimiter');
+
         parent::__construct($this->createRegex($delimiter));
     }
 
