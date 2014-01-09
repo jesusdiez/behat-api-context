@@ -8,9 +8,9 @@ use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
 
 use Akamon\Behat\ApiContext\Domain\ApiContext;
-use Akamon\Behat\ApiContext\Domain\Client\ClientInterface;
-use Akamon\Behat\ApiContext\Domain\ParameterAccessor\DeepArrayParameterAccessor;
-use Akamon\Behat\ApiContext\Domain\ResponseParametersProcessor\JsonResponseParametersProcessor;
+use Akamon\Behat\ApiContext\Domain\Service\ClientRequester\ClientRequesterInterface;
+use Akamon\Behat\ApiContext\Domain\Service\Parameter\ParameterAccessor\DeepArrayParameterAccessor;
+use Akamon\Behat\ApiContext\Domain\Service\ResponseParametersProcessor\JsonResponseParametersProcessor;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -31,7 +31,7 @@ class FeatureContext extends BehatContext
     }
 }
 
-class TestingClient implements ClientInterface
+class TestingClient implements ClientRequesterInterface
 {
     public function request(Request $request)
     {

@@ -2,10 +2,10 @@
 
 namespace Akamon\Behat\ApiContext\Domain;
 
-use Akamon\Behat\ApiContext\Domain\Client\ClientInterface;
-use Akamon\Behat\ApiContext\Domain\ParameterAccessor\ParameterAccessorInterface;
-use Akamon\Behat\ApiContext\Domain\ResponseParametersProcessor\ResponseParametersProcessorInterface;
-use Akamon\Behat\ApiContext\Domain\RequestFilter\RequestFilterInterface;
+use Akamon\Behat\ApiContext\Domain\Service\ClientRequester\ClientRequesterInterface;
+use Akamon\Behat\ApiContext\Domain\Service\Parameter\ParameterAccessor\ParameterAccessorInterface;
+use Akamon\Behat\ApiContext\Domain\Service\ResponseParametersProcessor\ResponseParametersProcessorInterface;
+use Akamon\Behat\ApiContext\Domain\Service\RequestFilter\RequestFilterInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Behat\Behat\Context\BehatContext;
@@ -28,7 +28,7 @@ class ApiContext extends BehatContext
     private $response;
     private $responseParameters;
 
-    public function __construct(ClientInterface $client, ParameterAccessorInterface $parameterAccessor, ResponseParametersProcessorInterface $responseParametersProcessor)
+    public function __construct(ClientRequesterInterface $client, ParameterAccessorInterface $parameterAccessor, ResponseParametersProcessorInterface $responseParametersProcessor)
     {
         $this->client = $client;
         $this->parameterAccessor = $parameterAccessor;
