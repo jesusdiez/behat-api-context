@@ -29,4 +29,15 @@ class Response
     {
         return $this->statusCode;
     }
+
+    public function __toString()
+    {
+        return sprintf(<<<EOF
+Status Code: %s
+Headers: %s
+Content: %s
+EOF
+            , $this->statusCode, print_r($this->headers, true), $this->content
+        );
+    }
 }

@@ -18,4 +18,15 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($content, $response->getContent());
         $this->assertSame($headers, $response->getHeaders());
     }
+
+    public function testResponseToString()
+    {
+        $statusCode = '204';
+        $content = 'foo';
+        $headers = array('foo' => 'bar');
+
+        $response = new Response($statusCode, $content, $headers);
+
+        $this->assertInternalType('string', $response->__toString());
+    }
 }

@@ -4,7 +4,8 @@ Feature: ApiContext
     I want to use the ApiContext
 
     Scenario Outline: StatusCode
-        When I make a "GET" request to "/users?status_code=<statusCode>"
+        When I add the request parameter "statusCode" with "<statusCode>"
+        And I make a "POST" request to "/users"
         Then the response status code should be "<statusCode>"
 
         Examples:
@@ -32,7 +33,7 @@ Feature: ApiContext
     Scenario: Basic Authentication
         When I add the http basic authentication with "pablodip" and "pass"
         And I make a "POST" request to "/users"
-        Then the response header "authorization" should be "Basic cGFibG9kaXA6cGFzcw=="
+        Then the response header "AUTHORIZATION" should be "Basic cGFibG9kaXA6cGFzcw=="
 
     Scenario: Single Parameters
         When I add the request parameter "one" with "foo"

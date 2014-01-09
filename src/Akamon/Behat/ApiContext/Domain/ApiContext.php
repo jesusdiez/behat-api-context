@@ -6,8 +6,8 @@ use Akamon\Behat\ApiContext\Domain\Service\ClientRequester\ClientRequesterInterf
 use Akamon\Behat\ApiContext\Domain\Service\Parameter\ParameterAccessor\ParameterAccessorInterface;
 use Akamon\Behat\ApiContext\Domain\Service\ResponseParametersProcessor\ResponseParametersProcessorInterface;
 use Akamon\Behat\ApiContext\Domain\Service\RequestFilter\RequestFilterInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Akamon\Behat\ApiContext\Domain\Model\Request;
+use Akamon\Behat\ApiContext\Domain\Model\Response;
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
@@ -19,12 +19,14 @@ class ApiContext extends BehatContext
     private $parameterAccessor;
     private $responseParametersProcessor;
 
+    /** @var RequestFilterInterface */
     private $requestFilter;
 
     private $requestHeaders = array();
     private $requestParameters = array();
     private $requestContent;
 
+    /** @var Response */
     private $response;
     private $responseParameters;
 
@@ -115,29 +117,12 @@ class ApiContext extends BehatContext
 
     private function createRequest($method, $uri)
     {
-        $cookies = array();
-        $files = array();
-        $server = $this->getHttpHeaders();
-
-        $request = Request::create($uri, $method,
-            $this->requestParameters,
-            $cookies,
-            $files,
-            $server,
-            $this->requestContent
-        );
+        $request = new Request($method, $uri);
+        $request->setParameters($this->requestParameters);
+        $request->setHeaders($this->requestHeaders);
+        $request->setContent($this->requestContent);
 
         return $this->filterRequest($request);
-    }
-
-    private function getHttpHeaders()
-    {
-        $keys = f\keys($this->requestHeaders);
-        $keysMap = array_combine($keys, f\map(function ($key) {
-            return 'HTTP_'.$key;
-        }, $keys));
-
-        return f\rename_keys($this->requestHeaders, $keysMap);
     }
 
     private function filterRequest(Request $request)
@@ -193,7 +178,7 @@ class ApiContext extends BehatContext
      */
     public function checkResponseHeader($name, $expectedValue)
     {
-        $value = $this->getResponse()->headers->get($name);
+        $value = f\get_or($this->response->getHeaders(), $name, null);
 
         if ($value !== $expectedValue) {
             throw new \Exception(sprintf('The response header "%s" is "%s" and it should be "%s".', $name, $value, $expectedValue));

@@ -2,7 +2,7 @@
 
 namespace Akamon\Behat\ApiContext\Domain\Service\ResponseParametersProcessor;
 
-use Symfony\Component\HttpFoundation\Response;
+use Akamon\Behat\ApiContext\Domain\Model\Response;
 
 interface ResponseParametersProcessorInterface
 {

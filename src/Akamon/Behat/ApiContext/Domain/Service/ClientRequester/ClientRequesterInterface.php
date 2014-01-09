@@ -2,12 +2,13 @@
 
 namespace Akamon\Behat\ApiContext\Domain\Service\ClientRequester;
 
-use Symfony\Component\HttpFoundation as Http;
+use Akamon\Behat\ApiContext\Domain\Model\Request;
+use Akamon\Behat\ApiContext\Domain\Model\Response;
 
 interface ClientRequesterInterface
 {
     /**
-     * @return Http\Response
+     * @return Response
      */
-    function request(Http\Request $request);
+    function request(Request $request);
 }

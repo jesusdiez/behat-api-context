@@ -11,8 +11,9 @@ use Akamon\Behat\ApiContext\Domain\ApiContext;
 use Akamon\Behat\ApiContext\Domain\Service\ClientRequester\ClientRequesterInterface;
 use Akamon\Behat\ApiContext\Domain\Service\Parameter\ParameterAccessor\DeepArrayParameterAccessor;
 use Akamon\Behat\ApiContext\Domain\Service\ResponseParametersProcessor\JsonResponseParametersProcessor;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Akamon\Behat\ApiContext\Domain\Model\Request;
+use Akamon\Behat\ApiContext\Domain\Model\Response;
+use felpado as f;
 
 class FeatureContext extends BehatContext
 {
@@ -35,16 +36,12 @@ class TestingClient implements ClientRequesterInterface
 {
     public function request(Request $request)
     {
-        $response = new Response();
+        $statusCode = f\get_or($request->getParameters(), 'statusCode', 200);
+        $content = $request->getParameters() ?
+            json_encode($request->getParameters()) :
+            $request->getContent();
+        $headers = $request->getHeaders();
 
-        $response->setStatusCode($request->query->get('status_code', 200));
-        $response->headers->replace($request->headers->all());
-        $response->setContent(
-            $request->request->count() ?
-            json_encode($request->request->all()) :
-            $request->getContent()
-        );
-
-        return $response;
+        return new Response($statusCode, $content, $headers);
     }
 }

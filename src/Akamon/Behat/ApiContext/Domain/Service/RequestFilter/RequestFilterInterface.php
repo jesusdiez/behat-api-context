@@ -2,7 +2,7 @@
 
 namespace Akamon\Behat\ApiContext\Domain\Service\RequestFilter;
 
-use Symfony\Component\HttpFoundation\Request;
+use Akamon\Behat\ApiContext\Domain\Model\Request;
 
 interface RequestFilterInterface
 {

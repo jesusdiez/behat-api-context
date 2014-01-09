@@ -3,7 +3,7 @@
 namespace Akamon\Behat\ApiContext\Domain\Tests\Service\ResponseParametersProcessor;
 
 use Akamon\Behat\ApiContext\Domain\Service\ResponseParametersProcessor\JsonResponseParametersProcessor;
-use Symfony\Component\HttpFoundation\Response;
+use Akamon\Behat\ApiContext\Domain\Model\Response;
 
 class JsonResponseParametersProcessorTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +12,7 @@ class JsonResponseParametersProcessorTest extends \PHPUnit_Framework_TestCase
         $parameters = array('foo' => 'bar', 'one' => 'two');
 
         $processor = new JsonResponseParametersProcessor();
-        $response = new Response(json_encode($parameters));
+        $response = new Response(200, json_encode($parameters), array());
 
         $this->assertSame($parameters, $processor->process($response));
     }
