@@ -152,6 +152,20 @@ class ApiContext extends BehatContext
         return $this->response;
     }
 
+    public function getResponseParameters()
+    {
+        if ($this->responseParameters === null) {
+            throw new \RuntimeException('There are no response parameters.');
+        }
+
+        return $this->responseParameters;
+    }
+
+    public function getResponseParameter($name)
+    {
+        return $this->parameterAccessor->get($this->getResponseParameters(), $name);
+    }
+
     /**
      * @When /^I make a "(.*)" request to "(.*)" with the parameters:$/
      */
