@@ -309,7 +309,7 @@ class ApiContext extends BehatContext
         $content = $this->getResponse()->getContent();
 
         if (f\not(preg_match($regex, $content))) {
-            throw new \Exception(sprintf('The response content is "%s" and it should match "%s", but it does not.', $regex, $content));
+            throw new \Exception(sprintf('The response content is "%s" and it should match "%s", but it does not.', $content, $regex));
         }
     }
 
@@ -321,7 +321,7 @@ class ApiContext extends BehatContext
         $content = $this->getResponse()->getContent();
 
         if (preg_match($regex, $content)) {
-            throw new \Exception(sprintf('The response content is "%s" and it should not match "%s", but it does.', $regex, $content));
+            throw new \Exception(sprintf('The response content is "%s" and it should not match "%s", but it does.', $content, $regex));
         }
     }
 
