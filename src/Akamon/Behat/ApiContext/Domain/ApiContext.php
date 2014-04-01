@@ -112,6 +112,10 @@ class ApiContext extends BehatContext
         $request = $this->createRequest($method, $uri);
 
         $response = $this->client->request($request);
+        $this->requestParameters = array();
+        $this->requestHeaders = array();
+        $this->requestContent = array();
+
         $this->setResponse($response);
     }
 
