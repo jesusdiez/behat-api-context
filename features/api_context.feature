@@ -94,3 +94,12 @@ Feature: ApiContext
     Scenario: Print last response
         When I make a "POST" request to "/users"
         Then print last response
+
+    Scenario: Multiple requests
+      When I add the request parameter "one" with "foo"
+      And I make a "POST" request to "/users"
+      Then the response parameter "one" should be "foo"
+      And I add the request parameter "two" with "bar"
+      And I make a "POST" request to "/users"
+      Then the response parameter "two" should be "bar"
+      Then the response parameter "one" should not exist
