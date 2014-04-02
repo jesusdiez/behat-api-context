@@ -2,15 +2,16 @@
 
 namespace Akamon\Behat\ApiContext\Domain;
 
-use Akamon\Behat\ApiContext\Domain\Service\ClientRequester\ClientRequesterInterface;
-use Akamon\Behat\ApiContext\Domain\Service\Parameter\ParameterAccessor\ParameterAccessorInterface;
-use Akamon\Behat\ApiContext\Domain\Service\ResponseParametersProcessor\ResponseParametersProcessorInterface;
-use Akamon\Behat\ApiContext\Domain\Service\RequestFilter\RequestFilterInterface;
 use Akamon\Behat\ApiContext\Domain\Model\Request;
 use Akamon\Behat\ApiContext\Domain\Model\Response;
+use Akamon\Behat\ApiContext\Domain\Service\ClientRequester\ClientRequesterInterface;
+use Akamon\Behat\ApiContext\Domain\Service\Parameter\ParameterAccessor\ParameterAccessorInterface;
+use Akamon\Behat\ApiContext\Domain\Service\RequestFilter\RequestFilterInterface;
+use Akamon\Behat\ApiContext\Domain\Service\ResponseParametersProcessor\ResponseParametersProcessorInterface;
 use Behat\Behat\Context\BehatContext;
 use Behat\Gherkin\Node\PyStringNode;
 use Behat\Gherkin\Node\TableNode;
+use Exception;
 use felpado as f;
 
 class ApiContext extends BehatContext
@@ -30,10 +31,13 @@ class ApiContext extends BehatContext
     private $response;
     private $responseParameters;
 
-    public function __construct(ClientRequesterInterface $client, ParameterAccessorInterface $parameterAccessor, ResponseParametersProcessorInterface $responseParametersProcessor)
-    {
-        $this->client = $client;
-        $this->parameterAccessor = $parameterAccessor;
+    public function __construct(
+        ClientRequesterInterface $client,
+        ParameterAccessorInterface $parameterAccessor,
+        ResponseParametersProcessorInterface $responseParametersProcessor
+    ) {
+        $this->client                      = $client;
+        $this->parameterAccessor           = $parameterAccessor;
         $this->responseParametersProcessor = $responseParametersProcessor;
     }
 
@@ -112,11 +116,9 @@ class ApiContext extends BehatContext
         $request = $this->createRequest($method, $uri);
 
         $response = $this->client->request($request);
-        $this->requestParameters = array();
-        $this->requestHeaders = array();
-        $this->requestContent = array();
 
         $this->setResponse($response);
+        $this->cleanRequestStuff();
     }
 
     private function createRequest($method, $uri)
@@ -134,6 +136,7 @@ class ApiContext extends BehatContext
         if ($this->requestFilter) {
             return $this->requestFilter->filter($request);
         }
+
         return $request;
     }
 
@@ -187,7 +190,9 @@ class ApiContext extends BehatContext
         $statusCode = $this->getResponse()->getStatusCode();
 
         if ($statusCode != $expectedStatusCode) {
-            throw new \Exception(sprintf('The response status code is "%s" and it should be "%s".', $statusCode, $expectedStatusCode));
+            throw new Exception(
+                sprintf('The response status code is "%s" and it should be "%s".', $statusCode, $expectedStatusCode)
+            );
         }
     }
 
@@ -199,7 +204,9 @@ class ApiContext extends BehatContext
         $value = f\get_or($this->response->getHeaders(), $name, null);
 
         if ($value !== $expectedValue) {
-            throw new \Exception(sprintf('The response header "%s" is "%s" and it should be "%s".', $name, $value, $expectedValue));
+            throw new Exception(
+                sprintf('The response header "%s" is "%s" and it should be "%s".', $name, $value, $expectedValue)
+            );
         }
     }
 
@@ -219,7 +226,17 @@ class ApiContext extends BehatContext
     public function checkResponseParameterExists($name)
     {
         if (!$this->parameterAccessor->has($this->responseParameters, $name)) {
-            throw new \Exception(sprintf('The response parameter "%s" does not exist.', $name));
+            throw new Exception(sprintf('The response parameter "%s" does not exist.', $name));
+        }
+    }
+
+    /**
+     * @Then /^the response parameter "([^"]*)" should not exist$/
+     */
+    public function theResponseParameterShouldNotExist($name)
+    {
+        if ($this->parameterAccessor->has($this->responseParameters, $name)) {
+            throw new Exception(sprintf('The response parameter "%s" does exist.', $name));
         }
     }
 
@@ -243,7 +260,9 @@ class ApiContext extends BehatContext
         $value = $this->parameterAccessor->get($this->responseParameters, $name);
 
         if ($value != $expectedValue) {
-            throw new \Exception(sprintf('The response parameter "%s" is "%s" and it should be "%s".', $name, $value, $expectedValue));
+            throw new Exception(
+                sprintf('The response parameter "%s" is "%s" and it should be "%s".', $name, $value, $expectedValue)
+            );
         }
     }
 
@@ -267,7 +286,7 @@ class ApiContext extends BehatContext
         $value = $this->parameterAccessor->get($this->responseParameters, $name);
 
         if (!preg_match($regex, $value)) {
-            throw new \Exception(sprintf('The response parameter "%s" is "%s" and it should match "%s" but it does not.', $name, $value, $regex));
+            throw new Exception(sprintf('The response parameter "%s" is "%s" and it should match "%s" but it does not.', $name, $value, $regex));
         }
     }
 
@@ -291,7 +310,7 @@ class ApiContext extends BehatContext
         $value = $this->parameterAccessor->get($this->responseParameters, $name);
 
         if (preg_match($regex, $value)) {
-            throw new \Exception(sprintf('The response parameter "%s" is "%s" and it should not match "%s" but it does.', $name, $value, $regex));
+            throw new Exception(sprintf('The response parameter "%s" is "%s" and it should not match "%s" but it does.', $name, $value, $regex));
         }
     }
 
@@ -301,7 +320,7 @@ class ApiContext extends BehatContext
     public function theResponseContentShouldBe(PyStringNode $string)
     {
         if ($string->getRaw() !== $this->getResponse()->getContent()) {
-            throw new \Exception(sprintf('The response content is "%s" and it should be "%s"', $this->getResponse()->getContent(), $string->getRaw()));
+            throw new Exception(sprintf('The response content is "%s" and it should be "%s"', $this->getResponse()->getContent(), $string->getRaw()));
         }
     }
 
@@ -313,7 +332,9 @@ class ApiContext extends BehatContext
         $content = $this->getResponse()->getContent();
 
         if (f\not(preg_match($regex, $content))) {
-            throw new \Exception(sprintf('The response content is "%s" and it should match "%s", but it does not.', $content, $regex));
+            throw new Exception(
+                sprintf('The response content is "%s" and it should match "%s", but it does not.', $content, $regex)
+            );
         }
     }
 
@@ -325,7 +346,9 @@ class ApiContext extends BehatContext
         $content = $this->getResponse()->getContent();
 
         if (preg_match($regex, $content)) {
-            throw new \Exception(sprintf('The response content is "%s" and it should not match "%s", but it does.', $content, $regex));
+            throw new Exception(
+                sprintf('The response content is "%s" and it should not match "%s", but it does.', $content, $regex)
+            );
         }
     }
 
@@ -335,5 +358,12 @@ class ApiContext extends BehatContext
     public function printLastResponse()
     {
         $this->printDebug($this->getResponse());
+    }
+
+    private function cleanRequestStuff()
+    {
+        $this->requestParameters = array();
+        $this->requestHeaders    = array();
+        $this->requestContent    = array();
     }
 }
