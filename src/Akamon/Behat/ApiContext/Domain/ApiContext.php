@@ -326,9 +326,9 @@ class ApiContext extends BehatContext
     }
 
     /**
-     * @Then /^print last response$/
+     * @Then /^print api last response$/
      */
-    public function printLastResponse()
+    public function printApiLastResponse()
     {
         $this->printDebug($this->getResponse());
     }

@@ -93,4 +93,4 @@ Feature: ApiContext
 
     Scenario: Print last response
         When I make a "POST" request to "/users"
-        Then print last response
+        Then print api last response
